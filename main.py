@@ -23,7 +23,7 @@ class ClickerBot:
         if self.waiting_for_authorization:
             auth = check_valid_nickname(obj.message['text'])
             if auth[0]:
-                add_user(obj.message['from_id'], obj.message['text'])
+                add_user(obj.message['from_id'], obj.message['text'], self.db_session)
                 self.reply_to_user('Ты зарегистрирован! удачной игры!', obj)
                 self.waiting_for_authorization = False
             else:
@@ -40,8 +40,14 @@ class ClickerBot:
                          random_id=random.randint(0, 2 ** 64))
 
 
-def add_user(uid, nickname, db_sess):
-    pass
+def add_user(uid, nickname, sess):
+    global User
+    u = User()
+    u.uid = uid
+    u.nickname = nickname
+    sess.add(u)
+    sess.commit()
+
 
 
 def check_user(uid, db_sess):

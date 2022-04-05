@@ -10,6 +10,7 @@ class User(SqlAlchemyBase):
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     uid = sqlalchemy.Column(sqlalchemy.String, unique=True)
+    nickname = sqlalchemy.Column(sqlalchemy.String, unique=True)
     clicks = sqlalchemy.Column(sqlalchemy.Integer, default=0)
     modificators = sqlalchemy.Column(sqlalchemy.String, default='')
 
