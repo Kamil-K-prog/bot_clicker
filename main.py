@@ -16,20 +16,21 @@ class ClickerBot:
         self.waiting_for_authorization = False # Если True, то ждет сообщения с ником для регистрации
 
     def accept_message(self, obj):
-        if not check_user(uid=obj.message['from_id'], db_sess=self.db_session):
-            self.reply_to_user('Привет! Вижу, ты впервые тут, как тебя называть?', obj)
-            self.reply_to_user('Напиши свой ник:', obj)
-            self.waiting_for_authorization = True
         if self.waiting_for_authorization:
             auth = check_valid_nickname(obj.message['text'])
             if auth[0]:
                 add_user(obj.message['from_id'], obj.message['text'], self.db_session)
-                self.reply_to_user('Ты зарегистрирован! удачной игры!', obj)
+                self.reply_to_user('Отлично!', obj)
                 self.waiting_for_authorization = False
             else:
                 self.reply_to_user(auth[1], obj)
         else:
-            self.reply_to_user('Бот в разработке, какая игра!?', obj)
+            if not check_user(obj.message['from_id'], self.db_session):
+                self.reply_to_user('Привет! Вижу, ты впервые у нас', obj)
+                self.reply_to_user('Напиши свой ник, и я тебя запомню', obj)
+                self.waiting_for_authorization = True
+            else:
+                self.reply_to_user('Разрабатывается', obj)
 
 
 
@@ -43,7 +44,7 @@ class ClickerBot:
 def add_user(uid, nickname, sess):
     global User
     u = User()
-    u.uid = uid
+    u.uid = str(uid)
     u.nickname = nickname
     sess.add(u)
     sess.commit()
@@ -52,10 +53,10 @@ def add_user(uid, nickname, sess):
 
 def check_user(uid, db_sess):
     global User
-    ids = db_sess.query(User).all()
-    print(ids)
-    for id in ids:
-        if uid == str(ids):
+    users = db_sess.query(User).all()
+    for user in users:
+        print(user.uid)
+        if user.uid == uid:
             return True
     return False
 
