@@ -12,7 +12,7 @@ class User(SqlAlchemyBase):
     uid = sqlalchemy.Column(sqlalchemy.Text, unique=True)
     nickname = sqlalchemy.Column(sqlalchemy.Text, unique=True)
     clicks = sqlalchemy.Column(sqlalchemy.Integer, default=0)
-    modificators = sqlalchemy.Column(sqlalchemy.Text, default='')
+    modificator = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('modificators.id'),default=0)
 
-    #jobs = orm.relation("Jobs", back_populates="user")
+    modificators = orm.relation("Modificators")
 
