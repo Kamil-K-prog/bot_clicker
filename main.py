@@ -1,11 +1,14 @@
 import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 import random
+import datetime
 from data import db_session
 from data.user import User
 from data.modificators import Modificators
 
 TOKEN = 'cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed'
+BOT_START_TIME = datetime.datetime.now()
+saved_time = datetime.datetime.now()
 
 
 class ClickerBot:
@@ -72,15 +75,34 @@ def check_valid_nickname(nickname: str):
             return [False, 'Ошибка: Внутри имени недопустимый символ!']
     return [True, '']
 
+def check_time_to_commit(session, datetime):
+    global saved_time, BOT_START_TIME
+    step = 1
+    current_time = datetime.datetime.now()
 
-def main(vk_session, session, bot):
+    delta = current_time - BOT_START_TIME
+
+    seconds = delta.total_seconds()
+
+    minutes = (seconds % 3600) // 60
+
+    if minutes // step >= 1 and current_time.minute != saved_time.minute:
+        print(1)
+        session.commit()
+        saved_time = current_time
+
+
+
+def main(vk_session, session, bot, datetime):
     longpoll = VkBotLongPoll(vk_session, group_id='212227596')
 
     for event in longpoll.listen():
+        check_time_to_commit(session, datetime)
 
         if event.type == VkBotEventType.MESSAGE_NEW:
             vk = vk_session.get_api()
             bot.accept_message(event.obj)
+            print('Сообщение', event.obj.message['text'])
 
 
 if __name__ == '__main__':
@@ -88,4 +110,4 @@ if __name__ == '__main__':
     session = db_session.create_session()
     vk_session = vk_api.VkApi(token=TOKEN)
     bot = ClickerBot(vk_session, session)
-    main(vk_session, session, bot)
+    main(vk_session, session, bot, datetime)
