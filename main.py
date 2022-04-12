@@ -18,8 +18,15 @@ class ClickerBot:
         self.db_session = db_sess
         self.waiting_for_authorization = False  # Если True, то ждет сообщения с ником для регистрации
         self.keyboard = self.create_keyboard()
-        self.modificators_keyboard = None
-        self.texts = ['клик 👆🏻', 'модификаторы 💲', 'баланс 💰']
+        self.modificators_keyboard = self.create_modificator_keyboard()
+        self.agreement_keyboard = self.create_agreement_keyboard()
+        self.in_modificators = False
+        mods = [i[0] for i in get_modificators(self.db_session)]
+        self.ids = [i[1] for i in get_modificators(self.db_session)]
+        self.texts = ['клик 👆🏻', 'модификаторы 💲', 'баланс 💰', '🔙 back', *mods]
+        self.price = None
+        self.want_to_buy = False
+        self.m_id = 0
 
     def accept_message(self, obj):
         if self.waiting_for_authorization:
@@ -47,19 +54,47 @@ class ClickerBot:
                                        'баланс: информация о вашем балансе\n'
                                        'Для начала пиши "старт"!\n'
                                        'Если бот не работает - напиши "старт" и все заработает!', obj)
-                elif text != 'помощь' and text != 'старт' and text != self.texts[0] and text != self.texts[1] and text != self.texts[2]:
+                elif text != 'помощь' and text != 'старт' and text not in self.texts and text not in ['да', 'нет']:
+                    print(self.texts)
                     self.reply_to_user('Пиши "помощь"', obj)
                 elif text == 'старт':
                     self.reply_to_user('Удачи!', obj, self.keyboard)
-                elif self.texts[0] == text:
-                    rand = random.randint(1, 5)
+                    print(self.texts)
+                elif self.texts[0] == text and not self.in_modificators:
+                    user_modificator = get_user_modificator(obj.message['from_id'], self.db_session)
+                    rand = random.randint(1 * user_modificator, 10 * user_modificator)
                     self.reply_to_user(f'+ {rand} коинов', obj, self.keyboard)
                     add_coins(obj.message['from_id'], rand, self.db_session)
-                elif self.texts[1] == text:
-                    self.reply_to_user('В разработке!', obj, self.modificators_keyboard)
-                elif self.texts[2] == text:
+                elif self.texts[1] == text and not self.in_modificators:
+                    self.reply_to_user('Нажатие на модификатор вернет информацию о нем', obj, self.modificators_keyboard)
+                    self.in_modificators = True
+                elif self.texts[2] == text and not self.in_modificators:
                     coins = get_balance(obj.message["from_id"], self.db_session)
                     self.reply_to_user(f'У вас {coins} монет', obj, self.keyboard)
+                elif text == self.texts[3]:
+                    self.in_modificators = False
+                    self.reply_to_user('Возвращаемся...', obj, self.keyboard)
+                elif text in self.texts[4:] and self.in_modificators:
+                    self.m_id = self.texts.index(text) - 3
+                    price, multiplier = get_price_and_multiplier_of_modificator(self.m_id, self.db_session)
+                    self.reply_to_user(f'Увеличивает в {multiplier} раза количество получаемых коинов.\n'
+                                       f'Стоимость: {price}', obj, self.modificators_keyboard)
+                    self.want_to_buy = True
+                if self.want_to_buy and text not in ['старт', 'да', 'нет']:
+                    self.reply_to_user('Хочешь приобрести?', obj, self.agreement_keyboard)
+                elif self.want_to_buy and text == 'да' or text == 'нет':
+                    self.want_to_buy = False
+                    op = check_can_be_bought(obj.message['from_id'], self.m_id, self.db_session)
+                    if op and text == 'да':
+                        self.reply_to_user('Поздравляем с успешной покупкой!', obj, self.modificators_keyboard)
+                        set_modificator(obj.message['from_id'], self.m_id, self.db_session)
+                    elif op is False and text == 'да':
+                        self.reply_to_user('На вашем балансе недостаточно средств или у вас уже куплен'
+                                           'модификатор равный или лучше этого.', obj, self.modificators_keyboard)
+                    elif text == 'нет':
+                        self.reply_to_user('Продолжаем...', obj, self.modificators_keyboard)
+                    obj.message['text'] = 'старт'
+
 
     def reply_to_user(self, text, obj, kboard=None):
         vk = vk_session.get_api()
@@ -70,11 +105,41 @@ class ClickerBot:
 
     def create_keyboard(self):
         keyboard = vk_api.keyboard.VkKeyboard(one_time=False)
-        keyboard.add_button("Клик 👆🏻", color=vk_api.keyboard.VkKeyboardColor.SECONDARY)
-        keyboard.add_button("Модификаторы 💲", color=vk_api.keyboard.VkKeyboardColor.NEGATIVE)
+        keyboard.add_button("Клик 👆🏻", color=VkKeyboardColor.SECONDARY)
+        keyboard.add_button("Модификаторы 💲", color=VkKeyboardColor.NEGATIVE)
         keyboard.add_line()
-        keyboard.add_button("Баланс 💰", color=vk_api.keyboard.VkKeyboardColor.POSITIVE)
+        keyboard.add_button("Баланс 💰", color=VkKeyboardColor.POSITIVE)
         return keyboard.get_keyboard()
+
+    def create_modificator_keyboard(self):
+        k = 1
+        keyboard = VkKeyboard(one_time=False)
+        mods = get_modificators(self.db_session)
+        for i in range(len(mods)):
+            keyboard.add_button(mods[i][0], color=VkKeyboardColor.PRIMARY)
+            if k % 3 == 0:
+                keyboard.add_line()
+            k += 1
+        print(k)
+        if (k - 1) % 3 != 0:
+            keyboard.add_line()
+        keyboard.add_button("🔙 Back", color=VkKeyboardColor.POSITIVE)
+        return keyboard.get_keyboard()
+
+    def create_agreement_keyboard(self):
+        keyboard = VkKeyboard(one_time=True)
+        keyboard.add_button("Да", color=VkKeyboardColor.POSITIVE)
+        keyboard.add_button("Нет", color=VkKeyboardColor.NEGATIVE)
+        return keyboard.get_keyboard()
+
+
+def set_modificator(uid, mod_id, sess):
+    global User, Modificators
+    u = sess.query(User).filter_by(uid=uid).first()
+    mod = sess.query(Modificators).filter_by(id=mod_id).first()
+    u.modificator = mod.id
+    u.clicks -= mod.price
+    sess.commit()
 
 
 def add_user(uid, nickname, sess):
@@ -96,6 +161,37 @@ def add_coins(uid, coins, sess):
 def get_balance(uid, sess):
     global User
     return (sess.query(User).filter_by(uid=uid).first()).clicks
+
+
+def get_modificators(sess):
+    global Modificators
+    mods = sess.query(Modificators).all()
+    lst = []
+    for mod in mods:
+        if mod.id != 0:
+            lst += [(mod.name, mod.id)]
+    return lst
+
+
+def get_user_modificator(uid, sess):
+    global User
+    mod = sess.query(User).filter_by(uid=uid).first()
+    modificator = sess.query(Modificators).filter_by(id=mod.modificator).first()
+    return modificator.multiplier
+
+
+
+def check_can_be_bought(uid, mod_id, sess):
+    global User, Modificators
+    mod = sess.query(Modificators).filter_by(id=mod_id).first()
+    user = sess.query(User).filter_by(uid=uid).first()
+    return user.clicks >= mod.price and user.modificator < mod.id
+
+
+def get_price_and_multiplier_of_modificator(id, sess):
+    global Modificators
+    mod = sess.query(Modificators).filter_by(id=id).first()
+    return mod.price, mod.multiplier
 
 
 def check_user(uid, db_sess):  # проверяет наличие пользователя в базе
@@ -120,6 +216,7 @@ def check_valid_nickname(nickname: str):
             return [False, 'Ошибка: Внутри имени недопустимый символ!']
     return [True, '']
 
+
 def check_time_to_commit(session, datetime):
     global saved_time, BOT_START_TIME
     step = 1
@@ -131,7 +228,6 @@ def check_time_to_commit(session, datetime):
         print(1)
         session.commit()
         saved_time = current_time
-
 
 
 def main(vk_session, session, bot, datetime):
