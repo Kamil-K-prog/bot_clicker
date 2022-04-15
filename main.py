@@ -32,6 +32,14 @@ class ClickerBot:
         text_mes = obj.message['text']
         if text_mes.lower() not in self.texts:
             write_log(f'Resieved message from uid = "{uid}" and text = "{text_mes}"')
+        else:
+            if text_mes.lower() == self.texts[0]:
+                write_log(f'User with uid = "{uid}" clicked')
+            if text_mes.lower() == self.texts[1]:
+                write_log(f'User with uid = "{uid}" got modificators list')
+            if text_mes.lower() == self.texts[1]:
+                write_log(f'User with uid = "{uid}" got balance')
+
         if self.waiting_for_authorization:
             auth = check_valid_nickname(text_mes)
             if auth[0]:
