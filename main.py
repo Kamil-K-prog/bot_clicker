@@ -37,7 +37,7 @@ class ClickerBot:
                 write_log(f'User with uid = "{uid}" clicked')
             if text_mes.lower() == self.texts[1]:
                 write_log(f'User with uid = "{uid}" got modificators list')
-            if text_mes.lower() == self.texts[1]:
+            if text_mes.lower() == self.texts[2]:
                 write_log(f'User with uid = "{uid}" got balance')
 
         if self.waiting_for_authorization:
