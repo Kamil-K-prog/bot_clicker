@@ -12,6 +12,11 @@ BOT_START_TIME = datetime.datetime.now()
 saved_time = datetime.datetime.now()
 
 
+def write_log(text):
+    with open('data/logs/logs.txt', 'a') as logfile:
+        logfile.write(f'[{datetime.datetime.now()}] : {text}\n')
+
+
 class ClickerBot:
     def __init__(self, vk_session, db_sess):
         self.vk_session = vk_session
@@ -20,18 +25,23 @@ class ClickerBot:
         self.keyboard = self.create_keyboard()
         self.modificators_keyboard = None
         self.texts = ['клик 👆🏻', 'модификаторы 💲', 'баланс 💰']
+        write_log('Bot initialized')
 
     def accept_message(self, obj):
+        uid = obj.message['from_id']
+        text_mes = obj.message['text']
+        if text_mes.lower() not in self.texts:
+            write_log(f'Resieved message from uid = "{uid}" and text = "{text_mes}"')
         if self.waiting_for_authorization:
-            auth = check_valid_nickname(obj.message['text'])
+            auth = check_valid_nickname(text_mes)
             if auth[0]:
-                add_user(obj.message['from_id'], obj.message['text'], self.db_session)
+                add_user(uid, obj.message['text'], self.db_session)
                 self.reply_to_user('Отлично! Напиши "старт" чтобы начать!', obj)
                 self.waiting_for_authorization = False
             else:
                 self.reply_to_user(auth[1], obj)
         else:
-            if not check_user(obj.message['from_id'], self.db_session):
+            if not check_user(uid, self.db_session):
                 self.reply_to_user('Привет! Вижу, ты впервые у нас', obj)
                 self.reply_to_user(
                     'Напиши свой ник, и я тебя запомню\n'
@@ -40,25 +50,27 @@ class ClickerBot:
                     obj)
                 self.waiting_for_authorization = True
             else:
-                text = obj.message['text'].lower()
-                if text == 'помощь' and check_user(obj.message['from_id'], self.db_session):
+                text = text_mes.lower()
+                if text == 'помощь' and check_user(uid, self.db_session):
                     self.reply_to_user('кнопка клик: получить коины\n'
                                        'модификаторы: информация о модификаторах\n'
                                        'баланс: информация о вашем балансе\n'
                                        'Для начала пиши "старт"!\n'
                                        'Если бот не работает - напиши "старт" и все заработает!', obj)
-                elif text != 'помощь' and text != 'старт' and text != self.texts[0] and text != self.texts[1] and text != self.texts[2]:
+                elif text != 'помощь' and text != 'старт' and text != self.texts[0] and text != self.texts[
+                    1] and text != self.texts[2]:
                     self.reply_to_user('Пиши "помощь"', obj)
                 elif text == 'старт':
                     self.reply_to_user('Удачи!', obj, self.keyboard)
                 elif self.texts[0] == text:
                     rand = random.randint(1, 5)
                     self.reply_to_user(f'+ {rand} коинов', obj, self.keyboard)
-                    add_coins(obj.message['from_id'], rand, self.db_session)
+                    add_coins(uid, rand, self.db_session)
+                    write_log(f'User with uid = "{uid}" recieved {rand} coins')
                 elif self.texts[1] == text:
                     self.reply_to_user('В разработке!', obj, self.modificators_keyboard)
                 elif self.texts[2] == text:
-                    coins = get_balance(obj.message["from_id"], self.db_session)
+                    coins = get_balance(uid, self.db_session)
                     self.reply_to_user(f'У вас {coins} монет', obj, self.keyboard)
 
     def reply_to_user(self, text, obj, kboard=None):
@@ -84,6 +96,7 @@ def add_user(uid, nickname, sess):
     u.nickname = nickname
     sess.add(u)
     sess.commit()
+    write_log(f'Added user with uid = "{uid}" and nickname = "{nickname}"')
 
 
 def add_coins(uid, coins, sess):
@@ -120,6 +133,7 @@ def check_valid_nickname(nickname: str):
             return [False, 'Ошибка: Внутри имени недопустимый символ!']
     return [True, '']
 
+
 def check_time_to_commit(session, datetime):
     global saved_time, BOT_START_TIME
     step = 1
@@ -131,7 +145,7 @@ def check_time_to_commit(session, datetime):
         print(1)
         session.commit()
         saved_time = current_time
-
+        write_log('Database changes commited')
 
 
 def main(vk_session, session, bot, datetime):
@@ -147,8 +161,12 @@ def main(vk_session, session, bot, datetime):
 
 
 if __name__ == '__main__':
+    write_log('Program started')
     db_session.global_init('data/db/clicker_db.sqlite')
+    write_log('Database initialized')
     session = db_session.create_session()
+    write_log('Database session created')
     vk_session = vk_api.VkApi(token=TOKEN)
+    write_log(f'VK group session created with TOKEN = "{TOKEN}"')
     bot = ClickerBot(vk_session, session)
     main(vk_session, session, bot, datetime)
