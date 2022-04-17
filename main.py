@@ -17,6 +17,7 @@ def write_log(text):
         logfile.write(f'[{datetime.datetime.now()}] : {text}\n')
 
 
+
 class ClickerBot:
     def __init__(self, vk_session, db_sess):
         self.vk_session = vk_session
@@ -41,7 +42,7 @@ class ClickerBot:
                 write_log(f'User with uid = "{uid}" got balance')
 
         if self.waiting_for_authorization:
-            auth = check_valid_nickname(text_mes)
+            auth = check_valid_nickname(text_mes, self.db_session)
             if auth[0]:
                 add_user(uid, obj.message['text'], self.db_session)
                 self.reply_to_user('Отлично! Напиши "старт" чтобы начать!', obj)
@@ -53,8 +54,7 @@ class ClickerBot:
                 self.reply_to_user('Привет! Вижу, ты впервые у нас', obj)
                 self.reply_to_user(
                     'Напиши свой ник, и я тебя запомню\n'
-                    'Внимание! Имя не должно начинаться или заканчиваться на цифры или недопустимые символы!\n'
-                    'Для помощи пиши "помощь"',
+                    'Внимание! Имя не должно начинаться или заканчиваться на цифры или недопустимые символы!\n',
                     obj)
                 self.waiting_for_authorization = True
             else:
@@ -128,9 +128,13 @@ def check_user(uid, db_sess):  # проверяет наличие пользо�
     return False
 
 
-def check_valid_nickname(nickname: str):
-    valid = True
-    reason = None
+def check_valid_nickname(nickname: str, session):
+    global User
+    users = session.query(User).all()
+    for user in users:
+        if user.nickname == nickname:
+            return [False, 'Ошибка: Пользователь с таким именем уже зарегистрирован!']
+
     for symbol in '''!'1234567890@#$%^&*()_+{}:"?><][';/.,'"-=`~/*\|''':
         if nickname.startswith(symbol):
             return [False, 'Ошибка: Имя начинается с недопустимого символа!']
