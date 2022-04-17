@@ -12,6 +12,11 @@ BOT_START_TIME = datetime.datetime.now()
 saved_time = datetime.datetime.now()
 
 
+def write_log(text):
+    with open('data/logs/logs.txt', 'a') as logfile:
+        logfile.write(f'[{datetime.datetime.now()}] : {text}\n')
+
+
 class ClickerBot:
     def __init__(self, vk_session, db_sess):
         self.vk_session = vk_session
@@ -29,16 +34,28 @@ class ClickerBot:
         self.m_id = 0
 
     def accept_message(self, obj):
+        uid = obj.message['from_id']
+        text_mes = obj.message['text']
+        if text_mes.lower() not in self.texts:
+            write_log(f'Resieved message from uid = "{uid}" and text = "{text_mes}"')
+        else:
+            if text_mes.lower() == self.texts[0]:
+                write_log(f'User with uid = "{uid}" clicked')
+            if text_mes.lower() == self.texts[1]:
+                write_log(f'User with uid = "{uid}" got modificators list')
+            if text_mes.lower() == self.texts[2]:
+                write_log(f'User with uid = "{uid}" got balance')
+
         if self.waiting_for_authorization:
-            auth = check_valid_nickname(obj.message['text'])
+            auth = check_valid_nickname(text_mes)
             if auth[0]:
-                add_user(obj.message['from_id'], obj.message['text'], self.db_session)
+                add_user(uid, obj.message['text'], self.db_session)
                 self.reply_to_user('Отлично! Напиши "старт" чтобы начать!', obj)
                 self.waiting_for_authorization = False
             else:
                 self.reply_to_user(auth[1], obj)
         else:
-            if not check_user(obj.message['from_id'], self.db_session):
+            if not check_user(uid, self.db_session):
                 self.reply_to_user('Привет! Вижу, ты впервые у нас', obj)
                 self.reply_to_user(
                     'Напиши свой ник, и я тебя запомню\n'
@@ -47,8 +64,8 @@ class ClickerBot:
                     obj)
                 self.waiting_for_authorization = True
             else:
-                text = obj.message['text'].lower()
-                if text == 'помощь' and check_user(obj.message['from_id'], self.db_session):
+                text = text_mes.lower()
+                if text == 'помощь' and check_user(uid, self.db_session):
                     self.reply_to_user('кнопка клик: получить коины\n'
                                        'модификаторы: информация о модификаторах\n'
                                        'баланс: информация о вашем балансе\n'
@@ -65,6 +82,7 @@ class ClickerBot:
                     rand = random.randint(1 * user_modificator, 10 * user_modificator)
                     self.reply_to_user(f'+ {rand} коинов', obj, self.keyboard)
                     add_coins(obj.message['from_id'], rand, self.db_session)
+                    write_log(f'User with uid = "{uid}" recieved {rand} coins')
                 elif self.texts[1] == text and not self.in_modificators:
                     self.reply_to_user('Нажатие на модификатор вернет информацию о нем', obj, self.modificators_keyboard)
                     self.in_modificators = True
@@ -149,6 +167,7 @@ def add_user(uid, nickname, sess):
     u.nickname = nickname
     sess.add(u)
     sess.commit()
+    write_log(f'Added user with uid = "{uid}" and nickname = "{nickname}"')
 
 
 def add_coins(uid, coins, sess):
@@ -216,7 +235,6 @@ def check_valid_nickname(nickname: str):
             return [False, 'Ошибка: Внутри имени недопустимый символ!']
     return [True, '']
 
-
 def check_time_to_commit(session, datetime):
     global saved_time, BOT_START_TIME
     step = 1
@@ -228,6 +246,7 @@ def check_time_to_commit(session, datetime):
         print(1)
         session.commit()
         saved_time = current_time
+        write_log('Database changes commited')
 
 
 def main(vk_session, session, bot, datetime):
@@ -243,8 +262,12 @@ def main(vk_session, session, bot, datetime):
 
 
 if __name__ == '__main__':
+    write_log('Program started')
     db_session.global_init('data/db/clicker_db.sqlite')
+    write_log('Database initialized')
     session = db_session.create_session()
+    write_log('Database session created')
     vk_session = vk_api.VkApi(token=TOKEN)
+    write_log(f'VK group session created with TOKEN = "{TOKEN}"')
     bot = ClickerBot(vk_session, session)
     main(vk_session, session, bot, datetime)
