@@ -26,6 +26,8 @@ class ClickerBot:
         self.keyboard = self.create_keyboard()
         self.modificators_keyboard = self.create_modificator_keyboard()
         self.agreement_keyboard = self.create_agreement_keyboard()
+        self.functions_keyboard = self.create_functions_keyboard()
+        self.exchange_keyboard = self.create_exchange_keyboard()
         self.in_modificators = False
         mods = [i[0] for i in get_modificators(self.db_session)]
         self.ids = [i[1] for i in get_modificators(self.db_session)]
@@ -33,6 +35,11 @@ class ClickerBot:
         self.price = None
         self.want_to_buy = False
         self.m_id = 0
+        self.in_functions = False
+        self.in_exchange = False
+        self.accept_exchange = False
+        self.in_nickname_to_exchange_changing = False
+        self.in_value_changing
 
     def accept_message(self, obj):
         uid = obj.message['from_id']
@@ -112,6 +119,18 @@ class ClickerBot:
                     elif text == 'нет':
                         self.reply_to_user('Продолжаем...', obj, self.modificators_keyboard)
                     obj.message['text'] = 'старт'
+                if text_mes == 'Функции ⚙' and not (self.in_modificators or self.in_functions or self.in_exchange):
+                    self.in_functions = True
+                    self.reply_to_user('Открыто меню функций', obj, self.functions_keyboard)
+                if self.in_functions:
+                    if text_mes == 'Передача валюты':
+                        self.reply_to_user('Открыто меню передачи', obj, self.exchange_keyboard)
+                        self.in_exchange = True
+                    if text_mes == '🔙 Back':
+                        self.reply_to_user('Возвращаемся...', obj, self.keyboard)
+                        self.in_functions = False
+                elif self.in_exchange:
+                    pass
 
 
     def reply_to_user(self, text, obj, kboard=None):
@@ -126,6 +145,7 @@ class ClickerBot:
         keyboard.add_button("Клик 👆🏻", color=VkKeyboardColor.SECONDARY)
         keyboard.add_button("Модификаторы 💲", color=VkKeyboardColor.NEGATIVE)
         keyboard.add_line()
+        keyboard.add_button("Функции ⚙", color=VkKeyboardColor.POSITIVE)
         keyboard.add_button("Баланс 💰", color=VkKeyboardColor.POSITIVE)
         return keyboard.get_keyboard()
 
@@ -150,6 +170,21 @@ class ClickerBot:
         keyboard.add_button("Нет", color=VkKeyboardColor.NEGATIVE)
         return keyboard.get_keyboard()
 
+    def create_functions_keyboard(self):
+        keyboard = VkKeyboard(one_time=True)
+        keyboard.add_button("Передача валюты", color=VkKeyboardColor.PRIMARY)
+        keyboard.add_line()
+        keyboard.add_button("🔙 Back", color=VkKeyboardColor.NEGATIVE)
+        return keyboard.get_keyboard()
+
+
+    def create_exchange_keyboard(self):
+        keyboard = VkKeyboard(one_time=True)
+        keyboard.add_button("Ввести ник", color=VkKeyboardColor.PRIMARY)
+        keyboard.add_button("Ввести сумму", color=VkKeyboardColor.PRIMARY)
+        keyboard.add_button("Подтвердить", color=VkKeyboardColor.SECONDARY)
+        keyboard.add_button("🔙 Back", color=VkKeyboardColor.NEGATIVE)
+        return keyboard.get_keyboard()
 
 def set_modificator(uid, mod_id, sess):
     global User, Modificators
