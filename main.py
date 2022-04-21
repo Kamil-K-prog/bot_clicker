@@ -141,7 +141,7 @@ class ClickerBot:
                         self.reply_to_user('Поздравляем с успешной покупкой!', obj, self.modificators_keyboard)
                         set_modificator(obj.message['from_id'], self.m_id, self.db_session)
                     elif op is False and text == 'да':
-                        self.reply_to_user('На вашем балансе недостаточно средств или у вас уже куплен'
+                        self.reply_to_user('На вашем балансе недостаточно средств или у вас уже куплен '
                                            'модификатор равный или лучше этого.', obj, self.modificators_keyboard)
                     elif text == 'нет':
                         self.reply_to_user('Продолжаем...', obj, self.modificators_keyboard)
