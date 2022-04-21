@@ -17,7 +17,6 @@ def write_log(text):
         logfile.write(f'[{datetime.datetime.now()}] : {text}\n')
 
 
-
 class ClickerBot:
     def __init__(self, vk_session, db_sess):
         self.vk_session = vk_session
@@ -27,37 +26,49 @@ class ClickerBot:
         self.modificators_keyboard = self.create_modificator_keyboard()
         self.agreement_keyboard = self.create_agreement_keyboard()
         self.functions_keyboard = self.create_functions_keyboard()
-        self.exchange_keyboard = self.create_exchange_keyboard()
+        self.helping_keyboard = self.create_helping_leyboard()
+        self.back_keyboard = self.create_back_keyboard()
         self.in_modificators = False
         mods = [i[0] for i in get_modificators(self.db_session)]
         self.ids = [i[1] for i in get_modificators(self.db_session)]
-        self.texts = ['клик 👆🏻', 'модификаторы 💲', 'баланс 💰', '🔙 back', *mods]
+        self.texts = ['клик 👆🏻', 'модификаторы 💲', 'баланс 💰', '🔙 back', 'функции ⚙', 'передача валюты', *mods]
         self.price = None
         self.want_to_buy = False
         self.m_id = 0
         self.in_functions = False
         self.in_exchange = False
         self.accept_exchange = False
-        self.in_nickname_to_exchange_changing = False
-        self.in_value_changing
+        self.in_value_changing = False
+        self.nickname_to_exchange = ''
+        self.value_to_exchange = 0
+        self.nicknames_list = get_nicknames_list(self.db_session)
+        print(self.nicknames_list)
 
     def accept_message(self, obj):
         uid = obj.message['from_id']
         text_mes = obj.message['text']
-        if text_mes.lower() not in self.texts:
+        text = text_mes.lower()
+
+        if text_mes.lower() not in self.texts and '⚙' not in text_mes:
             write_log(f'Resieved message from uid = "{uid}" and text = "{text_mes}"')
+
         else:
-            if text_mes.lower() == self.texts[0]:
+            if text == self.texts[0]:
                 write_log(f'User with uid = "{uid}" clicked')
-            if text_mes.lower() == self.texts[1]:
+            if text == self.texts[1]:
                 write_log(f'User with uid = "{uid}" got modificators list')
-            if text_mes.lower() == self.texts[2]:
+            if text == self.texts[2]:
                 write_log(f'User with uid = "{uid}" got balance')
+            if text == self.texts[4]:
+                write_log(f'User with uid = "{uid}" got functions list')
+            if text == self.texts[5]:
+                write_log(f'User with uid = "{uid}" decided to transfer the coins')
 
         if self.waiting_for_authorization:
-            auth = check_valid_nickname(text_mes, self.db_session)
+            auth = check_valid_nickname(text_mes, self.db_session, self.texts)
             if auth[0]:
-                add_user(uid, obj.message['text'], self.db_session)
+                add_user(uid, text_mes, self.db_session)
+                self.nicknames_list += text_mes
                 self.reply_to_user('Отлично! Напиши "старт" чтобы начать!', obj)
                 self.waiting_for_authorization = False
             else:
@@ -71,42 +82,55 @@ class ClickerBot:
                     obj)
                 self.waiting_for_authorization = True
             else:
-                text = text_mes.lower()
                 if text == 'помощь' and check_user(uid, self.db_session):
-                    self.reply_to_user('кнопка клик: получить коины\n'
-                                       'модификаторы: информация о модификаторах\n'
-                                       'баланс: информация о вашем балансе\n'
-                                       'Для начала пиши "старт"!\n'
-                                       'Если бот не работает - напиши "старт" и все заработает!', obj)
-                elif text != 'помощь' and text != 'старт' and text not in self.texts and text not in ['да', 'нет']:
+                    self.reply_to_user('Кнопка клик: получить коины\n'
+                                       'Модификаторы: информация о модификаторах\n'
+                                       'Баланс: информация о вашем балансе\n'
+                                       'Для начала пиши/нажимай "старт"\n'
+                                       'Если бот не работает - напиши/нажми "старт" и все заработает!', obj,
+                                       self.helping_keyboard)
+                if text != 'помощь' and text != 'старт' and text != 'рестарт' and text not in self.texts and text not \
+                        in ['да', 'нет'] and text_mes not in self.nicknames_list:
                     print(self.texts)
-                    self.reply_to_user('Пиши "помощь"', obj)
-                elif text == 'старт':
+                    self.reply_to_user('Пиши или нажимай "Помощь"\nЕсли бот завис - напиши или нажми "Старт"', obj,
+                                       self.helping_keyboard)
+                if text == 'старт' or text == 'рестарт':
                     self.reply_to_user('Удачи!', obj, self.keyboard)
+                    self.in_modificators, \
+                    self.in_exchange, \
+                    self.in_functions = False, False, False
                     print(self.texts)
+
                 elif self.texts[0] == text and not self.in_modificators:
                     user_modificator = get_user_modificator(obj.message['from_id'], self.db_session)
                     rand = random.randint(1 * user_modificator, 10 * user_modificator)
                     self.reply_to_user(f'+ {rand} коинов', obj, self.keyboard)
                     add_coins(obj.message['from_id'], rand, self.db_session)
                     write_log(f'User with uid = "{uid}" recieved {rand} coins')
+
                 elif self.texts[1] == text and not self.in_modificators:
-                    self.reply_to_user('Нажатие на модификатор вернет информацию о нем', obj, self.modificators_keyboard)
+                    self.reply_to_user('Нажатие на модификатор вернет информацию о нем', obj,
+                                       self.modificators_keyboard)
                     self.in_modificators = True
+
                 elif self.texts[2] == text and not self.in_modificators:
                     coins = get_balance(obj.message["from_id"], self.db_session)
                     self.reply_to_user(f'У вас {coins} монет', obj, self.keyboard)
-                elif text == self.texts[3]:
+
+                elif text == self.texts[3] and self.in_modificators:
                     self.in_modificators = False
                     self.reply_to_user('Возвращаемся...', obj, self.keyboard)
-                elif text in self.texts[4:] and self.in_modificators:
+
+                elif text in self.texts[6:] and self.in_modificators:
                     self.m_id = self.texts.index(text) - 3
                     price, multiplier = get_price_and_multiplier_of_modificator(self.m_id, self.db_session)
                     self.reply_to_user(f'Увеличивает в {multiplier} раза количество получаемых коинов.\n'
                                        f'Стоимость: {price}', obj, self.modificators_keyboard)
+
                     self.want_to_buy = True
                 if self.want_to_buy and text not in ['старт', 'да', 'нет']:
                     self.reply_to_user('Хочешь приобрести?', obj, self.agreement_keyboard)
+
                 elif self.want_to_buy and text == 'да' or text == 'нет':
                     self.want_to_buy = False
                     op = check_can_be_bought(obj.message['from_id'], self.m_id, self.db_session)
@@ -119,19 +143,60 @@ class ClickerBot:
                     elif text == 'нет':
                         self.reply_to_user('Продолжаем...', obj, self.modificators_keyboard)
                     obj.message['text'] = 'старт'
-                if text_mes == 'Функции ⚙' and not (self.in_modificators or self.in_functions or self.in_exchange):
+
+
+                elif text_mes == 'Функции ⚙' and not (self.in_modificators or self.in_functions or self.in_exchange):
                     self.in_functions = True
+                    print(self.in_functions)
                     self.reply_to_user('Открыто меню функций', obj, self.functions_keyboard)
-                if self.in_functions:
+
+                elif self.in_value_changing:
+                    if text == self.texts[3]:
+                        self.in_exchange, self.in_value_changing = False, False
+                    try:
+                        if check_value_to_exchange(uid, int(text_mes),
+                                                   self.db_session) and not \
+                                get_user_nickname_on_uid(uid, self.nickname_to_exchange,self.db_session):
+                            self.value_to_exchange = int(text_mes)
+                            write_log(
+                                f'User with uid = "{uid}" gave to the user with nickname = "{text_mes}" '
+                                f'{self.value_to_exchange} coins')
+                            self.reply_to_user('Успешно передано', obj, self.functions_keyboard)
+                            do_exchange(self.value_to_exchange, uid, self.nickname_to_exchange, self.db_session)
+                            self.in_exchange, self.in_value_changing, self.nickname_to_exchange, \
+                            self.value_to_exchange = False, False, '', 0
+                        elif get_user_nickname_on_uid(uid, self.nickname_to_exchange, self.db_session):
+                            self.reply_to_user("Ты серьезно решил передать коины себе? Не надо так", obj,
+                                               self.back_keyboard)
+                        else:
+                            self.reply_to_user('Введена неправильная сумма!', obj, self.back_keyboard)
+                    except ValueError:
+                        self.reply_to_user('В твоем сообщении присутсвуют символы, отличные от цифр. Попробуй еще раз',
+                                           obj, self.back_keyboard)
+
+                elif self.in_functions and not self.in_exchange and not self.in_value_changing:
                     if text_mes == 'Передача валюты':
-                        self.reply_to_user('Открыто меню передачи', obj, self.exchange_keyboard)
+                        self.reply_to_user('Открыто меню передачи\nНапиши ник игрока, которому хочешь передать коины',
+                                           obj, self.back_keyboard)
                         self.in_exchange = True
-                    if text_mes == '🔙 Back':
+                    if text_mes.lower() == self.texts[3]:
                         self.reply_to_user('Возвращаемся...', obj, self.keyboard)
                         self.in_functions = False
-                elif self.in_exchange:
-                    pass
+                        print(self.in_functions)
 
+                elif self.in_exchange and not self.in_value_changing:
+                    nn = check_user_on_nickname(text_mes, self.db_session)
+                    if text == self.texts[3]:
+                        self.in_exchange = False
+                        self.reply_to_user('Возвращаемся...', obj, self.functions_keyboard)
+                    elif nn:
+                        self.nickname_to_exchange = text_mes
+                        self.reply_to_user('Отлично, теперь введи сумму, которую хочешь передать', obj,
+                                           self.back_keyboard)
+                        self.in_value_changing = True
+                    elif not nn:
+                        self.reply_to_user('Кажется, такого игрока не существует. Проверь правильность написания', obj,
+                                           self.back_keyboard)
 
     def reply_to_user(self, text, obj, kboard=None):
         vk = vk_session.get_api()
@@ -140,6 +205,19 @@ class ClickerBot:
                          random_id=random.randint(0, 2 ** 64),
                          keyboard=kboard)
 
+    def create_helping_leyboard(self):
+        keyboard = VkKeyboard(one_time=False)
+        keyboard.add_button("Старт", color=VkKeyboardColor.POSITIVE)
+        keyboard.add_line()
+        keyboard.add_button("Помощь", color=VkKeyboardColor.SECONDARY)
+        return keyboard.get_keyboard()
+
+    def create_back_keyboard(self):
+        keyboard = vk_api.keyboard.VkKeyboard(one_time=False)
+        keyboard.add_button("🔙 Back", color=VkKeyboardColor.NEGATIVE)
+        keyboard.add_button('Рестарт', color=VkKeyboardColor.SECONDARY)
+        return keyboard.get_keyboard()
+
     def create_keyboard(self):
         keyboard = vk_api.keyboard.VkKeyboard(one_time=False)
         keyboard.add_button("Клик 👆🏻", color=VkKeyboardColor.SECONDARY)
@@ -147,6 +225,7 @@ class ClickerBot:
         keyboard.add_line()
         keyboard.add_button("Функции ⚙", color=VkKeyboardColor.POSITIVE)
         keyboard.add_button("Баланс 💰", color=VkKeyboardColor.POSITIVE)
+        keyboard.add_button("Рестарт", color=VkKeyboardColor.NEGATIVE)
         return keyboard.get_keyboard()
 
     def create_modificator_keyboard(self):
@@ -177,14 +256,6 @@ class ClickerBot:
         keyboard.add_button("🔙 Back", color=VkKeyboardColor.NEGATIVE)
         return keyboard.get_keyboard()
 
-
-    def create_exchange_keyboard(self):
-        keyboard = VkKeyboard(one_time=True)
-        keyboard.add_button("Ввести ник", color=VkKeyboardColor.PRIMARY)
-        keyboard.add_button("Ввести сумму", color=VkKeyboardColor.PRIMARY)
-        keyboard.add_button("Подтвердить", color=VkKeyboardColor.SECONDARY)
-        keyboard.add_button("🔙 Back", color=VkKeyboardColor.NEGATIVE)
-        return keyboard.get_keyboard()
 
 def set_modificator(uid, mod_id, sess):
     global User, Modificators
@@ -227,12 +298,16 @@ def get_modificators(sess):
     return lst
 
 
+def get_user_nickname_on_uid(uid, nickname, session: db_session):
+    global User
+    return (session.query(User).filter_by(uid=uid).first()).nickname == nickname
+
+
 def get_user_modificator(uid, sess):
     global User
     mod = sess.query(User).filter_by(uid=uid).first()
     modificator = sess.query(Modificators).filter_by(id=mod.modificator).first()
     return modificator.multiplier
-
 
 
 def check_can_be_bought(uid, mod_id, sess):
@@ -257,13 +332,16 @@ def check_user(uid, db_sess):  # проверяет наличие пользо�
     return False
 
 
-def check_valid_nickname(nickname: str, session):
+def check_valid_nickname(nickname: str, session, texts):
     global User
+    е = texts + ['false', 'true']
     users = session.query(User).all()
+    for text in e:
+        if nickname in text:
+            return [False, 'К сожалению, это слово зарезервировано для работы бота. Придумайте другой ник']
     for user in users:
         if user.nickname == nickname:
             return [False, 'Ошибка: Пользователь с таким именем уже зарегистрирован!']
-
     for symbol in '''!'1234567890@#$%^&*()_+{}:"?><][';/.,'"-=`~/*\|''':
         if nickname.startswith(symbol):
             return [False, 'Ошибка: Имя начинается с недопустимого символа!']
@@ -273,6 +351,42 @@ def check_valid_nickname(nickname: str, session):
         if symb in nickname:
             return [False, 'Ошибка: Внутри имени недопустимый символ!']
     return [True, '']
+
+
+def check_user_on_nickname(nickname, session):  # проверяет наличие пользователя в базе по бд
+    global User
+    for user in session.query(User).all():
+        if nickname == user.nickname:
+            return True
+    return False
+
+
+def get_nicknames_list(session: db_session):
+    global User
+    res = []
+    for i in session.query(User).all():
+        res.append(i.nickname)
+    return res
+
+
+def do_exchange(summ, sender_uid, acceptor_nickname, session: db_session):
+    global User
+    sender_clicks = (session.query(User).filter_by(uid=sender_uid).first()).clicks
+    acceptor_clicks = (session.query(User).filter_by(nickname=acceptor_nickname).first()).clicks
+    print(f'{sender_clicks} / {acceptor_clicks}')
+    session.query(User).filter_by(uid=sender_uid).update({'clicks': int(sender_clicks - summ)})
+    session.query(User).filter_by(nickname=acceptor_nickname).update({'clicks': int(acceptor_clicks + summ)})
+    print('exchanged')
+    session.commit()
+
+
+def check_value_to_exchange(uid, summ, session):
+    global User
+    sender = session.query(User).filter_by(uid=uid).first()
+    if sender.clicks >= summ:
+        return True
+    return False
+
 
 def check_time_to_commit(session, datetime):
     global saved_time, BOT_START_TIME
