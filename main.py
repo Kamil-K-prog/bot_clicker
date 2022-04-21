@@ -31,7 +31,8 @@ class ClickerBot:
         self.in_modificators = False
         mods = [i[0] for i in get_modificators(self.db_session)]
         self.ids = [i[1] for i in get_modificators(self.db_session)]
-        self.texts = ['клик 👆🏻', 'модификаторы 💲', 'баланс 💰', '🔙 back', 'функции ⚙', 'передача валюты', *mods]
+        self.texts = ['клик 👆🏻', 'модификаторы 💲', 'баланс 💰', '🔙 back', 'функции ⚙', 'передача валюты',
+                      'получить анекдот', *mods]
         self.price = None
         self.want_to_buy = False
         self.m_id = 0
@@ -40,6 +41,8 @@ class ClickerBot:
         self.accept_exchange = False
         self.in_value_changing = False
         self.nickname_to_exchange = ''
+        self.anekdots = all_anekdots()
+        self.rofls = []
         self.value_to_exchange = 0
         self.nicknames_list = get_nicknames_list(self.db_session)
         print(self.nicknames_list)
@@ -87,7 +90,7 @@ class ClickerBot:
                                        'Модификаторы: информация о модификаторах\n'
                                        'Баланс: информация о вашем балансе\n'
                                        'Для начала пиши/нажимай "старт"\n'
-                                       'Если бот не работает - напиши/нажми "старт" и все заработает!', obj,
+                                       'Если бот не работает - напиши/нажми "рестарт" и все заработает!', obj,
                                        self.helping_keyboard)
                 if text != 'помощь' and text != 'старт' and text != 'рестарт' and text not in self.texts and text not \
                         in ['да', 'нет'] and text_mes not in self.nicknames_list:
@@ -103,7 +106,7 @@ class ClickerBot:
 
                 elif self.texts[0] == text and not self.in_modificators:
                     user_modificator = get_user_modificator(obj.message['from_id'], self.db_session)
-                    rand = random.randint(1 * user_modificator, 10 * user_modificator)
+                    rand = random.randint(1, 10) * user_modificator
                     self.reply_to_user(f'+ {rand} коинов', obj, self.keyboard)
                     add_coins(obj.message['from_id'], rand, self.db_session)
                     write_log(f'User with uid = "{uid}" recieved {rand} coins')
@@ -121,8 +124,8 @@ class ClickerBot:
                     self.in_modificators = False
                     self.reply_to_user('Возвращаемся...', obj, self.keyboard)
 
-                elif text in self.texts[6:] and self.in_modificators:
-                    self.m_id = self.texts.index(text) - 3
+                elif text in self.texts[7:] and self.in_modificators:
+                    self.m_id = self.texts.index(text) - 6
                     price, multiplier = get_price_and_multiplier_of_modificator(self.m_id, self.db_session)
                     self.reply_to_user(f'Увеличивает в {multiplier} раза количество получаемых коинов.\n'
                                        f'Стоимость: {price}', obj, self.modificators_keyboard)
@@ -156,7 +159,7 @@ class ClickerBot:
                     try:
                         if check_value_to_exchange(uid, int(text_mes),
                                                    self.db_session) and not \
-                                get_user_nickname_on_uid(uid, self.nickname_to_exchange,self.db_session):
+                                get_user_nickname_on_uid(uid, self.nickname_to_exchange, self.db_session):
                             self.value_to_exchange = int(text_mes)
                             write_log(
                                 f'User with uid = "{uid}" gave to the user with nickname = "{text_mes}" '
@@ -175,11 +178,14 @@ class ClickerBot:
                                            obj, self.back_keyboard)
 
                 elif self.in_functions and not self.in_exchange and not self.in_value_changing:
-                    if text_mes == 'Передача валюты':
+                    if text == self.texts[5]:
                         self.reply_to_user('Открыто меню передачи\nНапиши ник игрока, которому хочешь передать коины',
                                            obj, self.back_keyboard)
                         self.in_exchange = True
-                    if text_mes.lower() == self.texts[3]:
+
+                    if text == self.texts[6]:
+                        self.reply_to_user(self.get_rofl(), obj, self.functions_keyboard)
+                    if text == self.texts[3]:
                         self.reply_to_user('Возвращаемся...', obj, self.keyboard)
                         self.in_functions = False
                         print(self.in_functions)
@@ -205,6 +211,22 @@ class ClickerBot:
                          random_id=random.randint(0, 2 ** 64),
                          keyboard=kboard)
 
+    def get_rofl(self):
+        try:
+            tmp = []
+            if len(self.rofls) == 0:
+                for i in self.anekdots:
+                    if i != ';':
+                        tmp += [i]
+                    else:
+                        self.rofls += [tmp[:]]
+                        tmp.clear()
+            rnd = random.choice(self.rofls)
+            self.rofls.remove(rnd)
+            return '\n'.join(rnd)
+        except Exception as e:
+            return 'Шутки кончились ;)'
+
     def create_helping_leyboard(self):
         keyboard = VkKeyboard(one_time=False)
         keyboard.add_button("Старт", color=VkKeyboardColor.POSITIVE)
@@ -213,7 +235,7 @@ class ClickerBot:
         return keyboard.get_keyboard()
 
     def create_back_keyboard(self):
-        keyboard = vk_api.keyboard.VkKeyboard(one_time=False)
+        keyboard = vk_api.keyboard.VkKeyboard()
         keyboard.add_button("🔙 Back", color=VkKeyboardColor.NEGATIVE)
         keyboard.add_button('Рестарт', color=VkKeyboardColor.SECONDARY)
         return keyboard.get_keyboard()
@@ -250,8 +272,9 @@ class ClickerBot:
         return keyboard.get_keyboard()
 
     def create_functions_keyboard(self):
-        keyboard = VkKeyboard(one_time=True)
+        keyboard = VkKeyboard()
         keyboard.add_button("Передача валюты", color=VkKeyboardColor.PRIMARY)
+        keyboard.add_button("Получить анекдот", color=VkKeyboardColor.SECONDARY)
         keyboard.add_line()
         keyboard.add_button("🔙 Back", color=VkKeyboardColor.NEGATIVE)
         return keyboard.get_keyboard()
@@ -334,9 +357,9 @@ def check_user(uid, db_sess):  # проверяет наличие пользо�
 
 def check_valid_nickname(nickname: str, session, texts):
     global User
-    е = texts + ['false', 'true']
+    tmp = texts + ['false', 'true']
     users = session.query(User).all()
-    for text in e:
+    for text in tmp:
         if nickname in text:
             return [False, 'К сожалению, это слово зарезервировано для работы бота. Придумайте другой ник']
     for user in users:
@@ -400,6 +423,11 @@ def check_time_to_commit(session, datetime):
         session.commit()
         saved_time = current_time
         write_log('Database changes commited')
+
+
+def all_anekdots():
+    with open('data/jokes/anekdots.txt', 'r', encoding='utf-8') as f:
+        return list(map(str.strip, f.readlines()))
 
 
 def main(vk_session, session, bot, datetime):
