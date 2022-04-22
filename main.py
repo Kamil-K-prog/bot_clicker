@@ -72,7 +72,7 @@ class ClickerBot:
             if auth[0]:
                 add_user(uid, text_mes, self.db_session)
                 self.nicknames_list += text_mes
-                self.reply_to_user('Отлично! Напиши "старт" чтобы начать!', obj)
+                self.reply_to_user('Отлично! Напиши "старт" чтобы начать!', obj, self.helping_keyboard)
                 self.waiting_for_authorization = False
             else:
                 self.reply_to_user(auth[1], obj)
