@@ -1,0 +1,450 @@
+[2022-04-21 18:01:22.955742] : Program started
+[2022-04-21 18:01:23.406263] : Database initialized
+[2022-04-21 18:01:23.407254] : Database session created
+[2022-04-21 18:01:23.407254] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 18:01:29.444297] : Resieved message from uid = "421955613" and text = "старт"
+[2022-04-21 18:01:32.924442] : User with uid = "421955613" got functions list
+[2022-04-21 18:01:40.692144] : Resieved message from uid = "421955613" and text = "Рестарт"
+[2022-04-21 18:01:42.107539] : User with uid = "421955613" clicked
+[2022-04-21 18:01:42.535445] : User with uid = "421955613" recieved 11 coins
+[2022-04-21 18:01:43.161008] : User with uid = "421955613" clicked
+[2022-04-21 18:01:43.491798] : User with uid = "421955613" recieved 10 coins
+[2022-04-21 18:01:44.211709] : User with uid = "421955613" got balance
+[2022-04-21 18:01:45.441063] : User with uid = "421955613" clicked
+[2022-04-21 18:01:45.847820] : User with uid = "421955613" recieved 12 coins
+[2022-04-21 18:01:46.324991] : User with uid = "421955613" got balance
+[2022-04-21 18:01:47.563529] : User with uid = "421955613" clicked
+[2022-04-21 18:01:47.771081] : User with uid = "421955613" recieved 9 coins
+[2022-04-21 18:01:48.234719] : User with uid = "421955613" got balance
+[2022-04-21 18:01:49.847546] : Resieved message from uid = "421955613" and text = "Рестарт"
+[2022-04-21 18:01:51.852955] : User with uid = "421955613" clicked
+[2022-04-21 18:01:52.426885] : User with uid = "421955613" recieved 10 coins
+[2022-04-21 18:01:52.987153] : User with uid = "421955613" got balance
+[2022-04-21 18:01:55.914404] : User with uid = "421955613" got functions list
+[2022-04-21 18:01:57.019285] : User with uid = "421955613" decided to transfer the coins
+[2022-04-21 18:02:45.642257] : Database changes commited
+[2022-04-21 18:02:48.583626] : Resieved message from uid = "421955613" and text = "ф%ф"
+[2022-04-21 18:02:52.889266] : Resieved message from uid = "421955613" and text = "10"
+[2022-04-21 18:02:53.134185] : User with uid = "421955613" gave to the user with nickname = "10" 10 coins
+[2022-04-21 18:07:05.741443] : Database changes commited
+[2022-04-21 18:07:05.742447] : User with uid = "421955613" got functions list
+[2022-04-21 18:07:07.350524] : User with uid = "421955613" decided to transfer the coins
+[2022-04-21 18:12:28.634197] : Database changes commited
+[2022-04-21 18:12:48.408680] : User with uid = "421955613" got functions list
+[2022-04-21 18:12:56.273496] : User with uid = "515977655" clicked
+[2022-04-21 18:12:56.533769] : User with uid = "515977655" recieved 5 coins
+[2022-04-21 18:12:58.777483] : User with uid = "515977655" got modificators list
+[2022-04-21 18:13:01.445380] : Database changes commited
+[2022-04-21 18:22:35.391522] : Program started
+[2022-04-21 18:22:35.411528] : Database initialized
+[2022-04-21 18:22:35.411528] : Database session created
+[2022-04-21 18:22:35.412527] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 18:22:42.389316] : Resieved message from uid = "421955613" and text = "старт"
+[2022-04-21 18:22:44.601145] : User with uid = "421955613" got functions list
+[2022-04-21 18:22:46.906836] : User with uid = "421955613" decided to transfer the coins
+[2022-04-21 18:23:01.793671] : Resieved message from uid = "421955613" and text = "старт"
+[2022-04-21 18:23:03.789037] : User with uid = "421955613" got functions list
+[2022-04-21 18:23:05.192041] : User with uid = "421955613" decided to transfer the coins
+[2022-04-21 18:24:04.713785] : Program started
+[2022-04-21 18:24:04.738762] : Database initialized
+[2022-04-21 18:24:04.738762] : Database session created
+[2022-04-21 18:24:04.739763] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 18:24:10.995929] : Resieved message from uid = "421955613" and text = "старт"
+[2022-04-21 18:24:12.619218] : User with uid = "421955613" got functions list
+[2022-04-21 18:24:15.183232] : User with uid = "421955613" decided to transfer the coins
+[2022-04-21 18:25:16.434293] : Program started
+[2022-04-21 18:25:16.457295] : Database initialized
+[2022-04-21 18:25:16.457295] : Database session created
+[2022-04-21 18:25:16.458292] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 18:25:21.176995] : Resieved message from uid = "421955613" and text = "старт"
+[2022-04-21 18:25:22.198468] : User with uid = "421955613" clicked
+[2022-04-21 18:25:22.753114] : User with uid = "421955613" recieved 7 coins
+[2022-04-21 18:25:23.266878] : User with uid = "421955613" got balance
+[2022-04-21 18:25:25.166004] : User with uid = "421955613" got functions list
+[2022-04-21 18:25:26.508592] : User with uid = "515977655" got balance
+[2022-04-21 18:25:26.706318] : User with uid = "421955613" decided to transfer the coins
+[2022-04-21 18:25:27.698559] : User with uid = "515977655" got functions list
+[2022-04-21 18:25:45.256245] : Resieved message from uid = "421955613" and text = "False"
+[2022-04-21 18:25:54.554510] : User with uid = "515977655" got functions list
+[2022-04-21 18:25:57.562019] : User with uid = "515977655" decided to transfer the coins
+[2022-04-21 18:26:34.852326] : Database changes commited
+[2022-04-21 18:29:09.851384] : Program started
+[2022-04-21 18:29:09.892389] : Database initialized
+[2022-04-21 18:29:09.893480] : Database session created
+[2022-04-21 18:29:09.894389] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 18:29:15.304031] : Resieved message from uid = "421955613" and text = "Рестарт"
+[2022-04-21 18:29:17.085462] : User with uid = "421955613" clicked
+[2022-04-21 18:29:18.261749] : User with uid = "421955613" recieved 9 coins
+[2022-04-21 18:29:18.302116] : User with uid = "421955613" clicked
+[2022-04-21 18:29:19.036202] : User with uid = "421955613" recieved 6 coins
+[2022-04-21 18:29:19.076000] : User with uid = "421955613" got balance
+[2022-04-21 18:29:24.430597] : User with uid = "421955613" got functions list
+[2022-04-21 18:29:24.861487] : User with uid = "421955613" got functions list
+[2022-04-21 18:30:40.506896] : Program started
+[2022-04-21 18:30:40.528898] : Database initialized
+[2022-04-21 18:30:40.529909] : Database session created
+[2022-04-21 18:30:40.529909] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 18:30:48.469046] : Resieved message from uid = "421955613" and text = "старт"
+[2022-04-21 18:30:51.900537] : User with uid = "421955613" clicked
+[2022-04-21 18:30:52.228978] : User with uid = "421955613" recieved 4 coins
+[2022-04-21 18:30:52.824548] : User with uid = "421955613" clicked
+[2022-04-21 18:30:53.491443] : User with uid = "421955613" recieved 7 coins
+[2022-04-21 18:30:53.555540] : User with uid = "421955613" got balance
+[2022-04-21 18:31:04.921516] : User with uid = "421955613" got functions list
+[2022-04-21 18:31:06.960233] : User with uid = "421955613" decided to transfer the coins
+[2022-04-21 18:31:10.941070] : Resieved message from uid = "421955613" and text = "False"
+[2022-04-21 18:31:14.822573] : Resieved message from uid = "421955613" and text = "80"
+[2022-04-21 18:31:14.964324] : User with uid = "421955613" gave to the user with nickname = "80" 80 coins
+[2022-04-21 18:31:19.184525] : User with uid = "421955613" got balance
+[2022-04-21 18:31:27.180464] : User with uid = "421955613" clicked
+[2022-04-21 18:31:27.625644] : User with uid = "421955613" recieved 18 coins
+[2022-04-21 18:31:27.981600] : User with uid = "421955613" clicked
+[2022-04-21 18:31:28.499238] : User with uid = "421955613" recieved 18 coins
+[2022-04-21 18:31:28.941333] : User with uid = "421955613" clicked
+[2022-04-21 18:31:29.329523] : User with uid = "421955613" recieved 15 coins
+[2022-04-21 18:31:29.915329] : User with uid = "421955613" clicked
+[2022-04-21 18:31:30.407306] : User with uid = "421955613" recieved 17 coins
+[2022-04-21 18:31:32.890838] : User with uid = "421955613" clicked
+[2022-04-21 18:31:33.456145] : User with uid = "421955613" recieved 8 coins
+[2022-04-21 18:31:35.332115] : User with uid = "421955613" clicked
+[2022-04-21 18:31:35.843659] : User with uid = "421955613" recieved 12 coins
+[2022-04-21 18:31:40.243322] : User with uid = "421955613" clicked
+[2022-04-21 18:31:40.532817] : User with uid = "421955613" recieved 11 coins
+[2022-04-21 18:31:40.587893] : Database changes commited
+[2022-04-21 18:31:41.318297] : User with uid = "421955613" got modificators list
+[2022-04-21 18:31:44.601593] : User with uid = "421955613" clicked
+[2022-04-21 18:31:45.066573] : User with uid = "421955613" recieved 3 coins
+[2022-04-21 18:31:50.476493] : User with uid = "421955613" got balance
+[2022-04-21 18:32:16.723407] : Database changes commited
+[2022-04-21 18:32:16.724407] : User with uid = "421955613" clicked
+[2022-04-21 18:32:17.018436] : User with uid = "421955613" recieved 9 coins
+[2022-04-21 18:32:18.356608] : User with uid = "421955613" got modificators list
+[2022-04-21 18:43:53.462646] : Program started
+[2022-04-21 18:43:53.482647] : Database initialized
+[2022-04-21 18:43:53.482647] : Database session created
+[2022-04-21 18:43:53.483648] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 18:44:01.155191] : Resieved message from uid = "421955613" and text = "с"
+[2022-04-21 18:44:02.723730] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 18:44:06.338244] : User with uid = "421955613" clicked
+[2022-04-21 18:44:06.655006] : User with uid = "421955613" recieved 6 coins
+[2022-04-21 18:44:07.599499] : User with uid = "421955613" got balance
+[2022-04-21 18:44:08.814555] : User with uid = "421955613" got modificators list
+[2022-04-21 18:44:24.807449] : Resieved message from uid = "421955613" and text = "Нет"
+[2022-04-21 18:44:38.502831] : Program started
+[2022-04-21 18:44:38.522843] : Database initialized
+[2022-04-21 18:44:38.522843] : Database session created
+[2022-04-21 18:44:38.523832] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 18:44:45.776258] : User with uid = "421955613" got modificators list
+[2022-04-21 18:44:48.969755] : Resieved message from uid = "421955613" and text = "Да"
+[2022-04-21 18:44:52.710446] : Resieved message from uid = "421955613" and text = "Да"
+[2022-04-21 18:44:55.905204] : User with uid = "421955613" clicked
+[2022-04-21 18:44:56.596789] : User with uid = "421955613" recieved 12 coins
+[2022-04-21 18:44:56.686942] : User with uid = "421955613" clicked
+[2022-04-21 18:44:56.950786] : User with uid = "421955613" recieved 13 coins
+[2022-04-21 18:44:57.843887] : User with uid = "421955613" clicked
+[2022-04-21 18:44:58.390890] : User with uid = "421955613" recieved 37 coins
+[2022-04-21 18:44:58.949224] : User with uid = "421955613" clicked
+[2022-04-21 18:44:59.442922] : User with uid = "421955613" recieved 25 coins
+[2022-04-21 18:44:59.952343] : User with uid = "421955613" clicked
+[2022-04-21 18:45:00.738832] : User with uid = "421955613" recieved 5 coins
+[2022-04-21 18:45:04.152497] : User with uid = "421955613" got balance
+[2022-04-21 18:52:34.460951] : Program started
+[2022-04-21 18:52:34.479950] : Database initialized
+[2022-04-21 18:52:34.480948] : Database session created
+[2022-04-21 18:52:34.480948] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 18:52:42.591250] : Resieved message from uid = "421955613" and text = "Рестарт"
+[2022-04-21 18:52:43.887260] : User with uid = "421955613" got balance
+[2022-04-21 18:52:45.373314] : User with uid = "421955613" got functions list
+[2022-04-21 18:53:19.586743] : Program started
+[2022-04-21 18:53:19.605750] : Database initialized
+[2022-04-21 18:53:19.606743] : Database session created
+[2022-04-21 18:53:19.606743] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 18:53:24.986200] : Resieved message from uid = "421955613" and text = "c"
+[2022-04-21 18:53:26.030878] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 18:53:27.382926] : User with uid = "421955613" got functions list
+[2022-04-21 18:54:11.760023] : Program started
+[2022-04-21 18:54:11.780011] : Database initialized
+[2022-04-21 18:54:11.781025] : Database session created
+[2022-04-21 18:54:11.781025] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 18:54:21.173571] : Resieved message from uid = "421955613" and text = "c"
+[2022-04-21 18:54:22.192944] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 18:54:23.220359] : User with uid = "421955613" got functions list
+[2022-04-21 18:55:00.215505] : Program started
+[2022-04-21 18:55:00.235522] : Database initialized
+[2022-04-21 18:55:00.235522] : Database session created
+[2022-04-21 18:55:00.236506] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 18:55:06.253118] : Resieved message from uid = "421955613" and text = "c"
+[2022-04-21 18:55:07.411296] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 18:55:09.990206] : User with uid = "421955613" got functions list
+[2022-04-21 18:57:40.775396] : Program started
+[2022-04-21 18:57:40.797394] : Database initialized
+[2022-04-21 18:57:40.798394] : Database session created
+[2022-04-21 18:57:40.799383] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 18:57:44.861775] : Resieved message from uid = "421955613" and text = "h"
+[2022-04-21 18:57:45.969186] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 18:57:47.616810] : User with uid = "421955613" got balance
+[2022-04-21 18:57:48.753292] : User with uid = "421955613" got functions list
+[2022-04-21 19:01:59.575662] : Program started
+[2022-04-21 19:01:59.598659] : Database initialized
+[2022-04-21 19:01:59.598659] : Database session created
+[2022-04-21 19:01:59.599646] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:02:08.294226] : Resieved message from uid = "421955613" and text = "c"
+[2022-04-21 19:02:09.795606] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 19:02:12.309687] : User with uid = "421955613" got functions list
+[2022-04-21 19:05:25.648131] : Program started
+[2022-04-21 19:05:25.666132] : Database initialized
+[2022-04-21 19:05:25.667133] : Database session created
+[2022-04-21 19:05:25.667133] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:05:29.098858] : Resieved message from uid = "421955613" and text = "c"
+[2022-04-21 19:05:30.293711] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 19:05:31.445688] : User with uid = "421955613" got functions list
+[2022-04-21 19:06:34.383876] : Program started
+[2022-04-21 19:06:34.406881] : Database initialized
+[2022-04-21 19:06:34.407880] : Database session created
+[2022-04-21 19:06:34.407880] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:06:39.953671] : Resieved message from uid = "421955613" and text = "h"
+[2022-04-21 19:06:41.036470] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 19:06:45.025753] : User with uid = "421955613" got functions list
+[2022-04-21 19:07:12.780908] : Program started
+[2022-04-21 19:07:12.802926] : Database initialized
+[2022-04-21 19:07:12.803935] : Database session created
+[2022-04-21 19:07:12.804928] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:07:20.138759] : Resieved message from uid = "421955613" and text = "/"
+[2022-04-21 19:07:21.200100] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 19:07:22.104626] : User with uid = "421955613" got functions list
+[2022-04-21 19:08:00.211148] : Program started
+[2022-04-21 19:08:00.232147] : Database initialized
+[2022-04-21 19:08:00.232147] : Database session created
+[2022-04-21 19:08:00.233148] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:08:04.176386] : Resieved message from uid = "421955613" and text = "/"
+[2022-04-21 19:08:05.266812] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 19:08:07.006977] : User with uid = "421955613" got functions list
+[2022-04-21 19:12:03.650481] : Program started
+[2022-04-21 19:12:03.669506] : Database initialized
+[2022-04-21 19:12:03.669506] : Database session created
+[2022-04-21 19:12:03.670489] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:12:11.324888] : Resieved message from uid = "421955613" and text = "."
+[2022-04-21 19:12:12.417946] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 19:12:13.851152] : User with uid = "421955613" got functions list
+[2022-04-21 19:12:33.480442] : Program started
+[2022-04-21 19:12:33.504443] : Database initialized
+[2022-04-21 19:12:33.505444] : Database session created
+[2022-04-21 19:12:33.505444] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:12:36.962024] : Resieved message from uid = "421955613" and text = "."
+[2022-04-21 19:12:37.886516] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 19:12:39.408796] : User with uid = "421955613" got functions list
+[2022-04-21 19:13:08.974201] : Program started
+[2022-04-21 19:13:08.995203] : Database initialized
+[2022-04-21 19:13:08.995203] : Database session created
+[2022-04-21 19:13:08.996203] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:13:12.090622] : Resieved message from uid = "421955613" and text = "."
+[2022-04-21 19:13:13.052737] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 19:13:13.993835] : User with uid = "421955613" got functions list
+[2022-04-21 19:14:33.527781] : Program started
+[2022-04-21 19:14:33.549793] : Database initialized
+[2022-04-21 19:14:33.549793] : Database session created
+[2022-04-21 19:14:33.550801] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:14:37.076894] : Resieved message from uid = "421955613" and text = "."
+[2022-04-21 19:14:37.970912] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 19:14:39.598437] : User with uid = "421955613" got functions list
+[2022-04-21 19:16:54.828098] : Program started
+[2022-04-21 19:16:54.849097] : Database initialized
+[2022-04-21 19:16:54.850096] : Database session created
+[2022-04-21 19:16:54.850096] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:16:57.765717] : Resieved message from uid = "421955613" and text = "."
+[2022-04-21 19:16:58.667343] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 19:17:00.206269] : User with uid = "421955613" got functions list
+[2022-04-21 19:17:59.755008] : Program started
+[2022-04-21 19:17:59.773010] : Database initialized
+[2022-04-21 19:17:59.773010] : Database session created
+[2022-04-21 19:17:59.774006] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:18:02.052316] : Resieved message from uid = "421955613" and text = "."
+[2022-04-21 19:18:03.099257] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 19:18:04.452223] : User with uid = "421955613" got functions list
+[2022-04-21 19:18:33.919677] : Program started
+[2022-04-21 19:18:33.938676] : Database initialized
+[2022-04-21 19:18:33.938676] : Database session created
+[2022-04-21 19:18:33.938676] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:18:36.722174] : Resieved message from uid = "421955613" and text = "."
+[2022-04-21 19:18:37.650493] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 19:18:39.372737] : User with uid = "421955613" got functions list
+[2022-04-21 19:19:01.444061] : Program started
+[2022-04-21 19:19:01.463060] : Database initialized
+[2022-04-21 19:19:01.463060] : Database session created
+[2022-04-21 19:19:01.464043] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:19:06.824185] : Resieved message from uid = "421955613" and text = "/"
+[2022-04-21 19:19:07.828683] : Resieved message from uid = "421955613" and text = "Старт"
+[2022-04-21 19:19:09.411545] : User with uid = "421955613" got functions list
+[2022-04-21 19:24:53.259066] : Database changes commited
+[2022-04-21 19:24:59.901092] : Resieved message from uid = "700171334" and text = "привет"
+[2022-04-21 19:25:01.094126] : Database changes commited
+[2022-04-21 19:25:08.379867] : Resieved message from uid = "700171334" and text = "Paul Young"
+[2022-04-21 19:26:09.115489] : Program started
+[2022-04-21 19:26:09.303771] : Database initialized
+[2022-04-21 19:26:09.303771] : Database session created
+[2022-04-21 19:26:09.304772] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:26:16.676036] : Resieved message from uid = "700171334" and text = "привет"
+[2022-04-21 19:26:22.149122] : Resieved message from uid = "700171334" and text = "Paul Young"
+[2022-04-21 19:26:22.495627] : Added user with uid = "700171334" and nickname = "Paul Young"
+[2022-04-21 19:26:24.796755] : Resieved message from uid = "700171334" and text = "старт"
+[2022-04-21 19:26:27.089901] : User with uid = "700171334" clicked
+[2022-04-21 19:26:27.656950] : User with uid = "700171334" recieved 10 coins
+[2022-04-21 19:26:28.089851] : User with uid = "700171334" got balance
+[2022-04-21 19:26:29.491016] : User with uid = "700171334" clicked
+[2022-04-21 19:26:29.974004] : User with uid = "700171334" recieved 6 coins
+[2022-04-21 19:26:30.550566] : User with uid = "700171334" clicked
+[2022-04-21 19:26:30.783659] : User with uid = "700171334" recieved 5 coins
+[2022-04-21 19:26:31.298449] : User with uid = "700171334" got balance
+[2022-04-21 19:26:32.241712] : User with uid = "700171334" got functions list
+[2022-04-21 19:27:49.762022] : Program started
+[2022-04-21 19:27:49.786018] : Database initialized
+[2022-04-21 19:27:49.787018] : Database session created
+[2022-04-21 19:27:49.787018] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:27:58.631955] : Resieved message from uid = "700171334" and text = "."
+[2022-04-21 19:27:59.908050] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 19:28:01.914510] : User with uid = "700171334" got functions list
+[2022-04-21 19:36:04.582892] : Program started
+[2022-04-21 19:36:04.606889] : Database initialized
+[2022-04-21 19:36:04.606889] : Database session created
+[2022-04-21 19:36:04.608074] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:36:11.510333] : Resieved message from uid = "700171334" and text = ","
+[2022-04-21 19:36:12.751784] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 19:36:14.182236] : User with uid = "700171334" got functions list
+[2022-04-21 19:37:06.622395] : Program started
+[2022-04-21 19:37:06.640393] : Database initialized
+[2022-04-21 19:37:06.640393] : Database session created
+[2022-04-21 19:37:06.640393] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:37:13.550568] : Resieved message from uid = "700171334" and text = "."
+[2022-04-21 19:37:14.442688] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 19:37:15.936764] : User with uid = "700171334" got functions list
+[2022-04-21 19:37:42.429595] : Program started
+[2022-04-21 19:37:42.447618] : Database initialized
+[2022-04-21 19:37:42.448611] : Database session created
+[2022-04-21 19:37:42.448611] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:38:00.920224] : Resieved message from uid = "700171334" and text = "."
+[2022-04-21 19:38:02.188238] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 19:38:11.266273] : User with uid = "700171334" got functions list
+[2022-04-21 19:42:47.631556] : Program started
+[2022-04-21 19:42:47.651561] : Database initialized
+[2022-04-21 19:42:47.651561] : Database session created
+[2022-04-21 19:42:47.652691] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:43:00.646210] : Resieved message from uid = "700171334" and text = "."
+[2022-04-21 19:43:01.991567] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 19:43:03.537685] : User with uid = "700171334" got functions list
+[2022-04-21 19:43:54.301521] : Program started
+[2022-04-21 19:43:54.323514] : Database initialized
+[2022-04-21 19:43:54.324524] : Database session created
+[2022-04-21 19:43:54.324524] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:44:02.272664] : Resieved message from uid = "700171334" and text = "m"
+[2022-04-21 19:44:03.400777] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 19:44:05.614256] : User with uid = "700171334" got functions list
+[2022-04-21 19:44:21.033698] : Program started
+[2022-04-21 19:44:21.050758] : Database initialized
+[2022-04-21 19:44:21.051776] : Database session created
+[2022-04-21 19:44:21.051776] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:44:31.701416] : Resieved message from uid = "700171334" and text = ","
+[2022-04-21 19:44:32.576729] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 19:44:34.122844] : User with uid = "700171334" got functions list
+[2022-04-21 19:45:13.725881] : Program started
+[2022-04-21 19:45:13.745886] : Database initialized
+[2022-04-21 19:45:13.745886] : Database session created
+[2022-04-21 19:45:13.745886] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:45:17.831174] : Resieved message from uid = "700171334" and text = "."
+[2022-04-21 19:45:18.847804] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 19:45:20.281051] : User with uid = "700171334" got functions list
+[2022-04-21 19:45:52.860463] : Program started
+[2022-04-21 19:45:52.883410] : Database initialized
+[2022-04-21 19:45:52.883410] : Database session created
+[2022-04-21 19:45:52.884425] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:45:55.888952] : Resieved message from uid = "700171334" and text = "."
+[2022-04-21 19:45:56.675043] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 19:45:58.060642] : User with uid = "700171334" got functions list
+[2022-04-21 19:48:54.334659] : Program started
+[2022-04-21 19:48:54.469673] : Database initialized
+[2022-04-21 19:48:54.469673] : Database session created
+[2022-04-21 19:48:54.470673] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:49:01.410116] : Resieved message from uid = "700171334" and text = "."
+[2022-04-21 19:49:02.265942] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 19:49:03.577617] : User with uid = "700171334" got functions list
+[2022-04-21 19:49:57.524473] : Program started
+[2022-04-21 19:49:57.543492] : Database initialized
+[2022-04-21 19:49:57.544475] : Database session created
+[2022-04-21 19:49:57.544475] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:50:02.876590] : Resieved message from uid = "700171334" and text = "."
+[2022-04-21 19:50:03.792033] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 19:50:05.410903] : User with uid = "700171334" got functions list
+[2022-04-21 19:50:52.503692] : Program started
+[2022-04-21 19:50:52.523667] : Database initialized
+[2022-04-21 19:50:52.524667] : Database session created
+[2022-04-21 19:50:52.524667] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:51:17.904205] : Resieved message from uid = "700171334" and text = "."
+[2022-04-21 19:51:18.972709] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 19:51:20.490893] : User with uid = "700171334" got functions list
+[2022-04-21 19:53:05.432852] : Program started
+[2022-04-21 19:53:05.451853] : Database initialized
+[2022-04-21 19:53:05.452854] : Database session created
+[2022-04-21 19:53:05.452854] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:53:10.061394] : Resieved message from uid = "700171334" and text = "."
+[2022-04-21 19:53:10.706384] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 19:53:12.008135] : User with uid = "700171334" got functions list
+[2022-04-21 19:59:40.464546] : Program started
+[2022-04-21 19:59:40.489550] : Database initialized
+[2022-04-21 19:59:40.489550] : Database session created
+[2022-04-21 19:59:40.490531] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 19:59:44.255965] : Resieved message from uid = "700171334" and text = "."
+[2022-04-21 19:59:45.224171] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 19:59:46.257498] : User with uid = "700171334" got functions list
+[2022-04-21 19:59:52.973664] : Program started
+[2022-04-21 19:59:52.994652] : Database initialized
+[2022-04-21 19:59:52.995653] : Database session created
+[2022-04-21 19:59:52.996654] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 20:00:18.353934] : Program started
+[2022-04-21 20:00:18.372936] : Database initialized
+[2022-04-21 20:00:18.374128] : Database session created
+[2022-04-21 20:00:18.374128] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 20:00:21.780293] : Resieved message from uid = "700171334" and text = "."
+[2022-04-21 20:00:22.804178] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 20:00:23.771488] : User with uid = "700171334" got functions list
+[2022-04-21 20:00:38.112565] : Resieved message from uid = "700171334" and text = "авхахв"
+[2022-04-21 20:00:43.254880] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 20:00:44.751094] : User with uid = "700171334" got functions list
+[2022-04-21 20:33:23.666611] : Program started
+[2022-04-21 20:33:23.689620] : Database initialized
+[2022-04-21 20:33:23.689620] : Database session created
+[2022-04-21 20:33:23.690616] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 20:33:29.052686] : User with uid = "700171334" got functions list
+[2022-04-21 20:33:52.272605] : Program started
+[2022-04-21 20:33:52.293596] : Database initialized
+[2022-04-21 20:33:52.294595] : Database session created
+[2022-04-21 20:33:52.295596] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 20:33:57.264134] : Resieved message from uid = "700171334" and text = "."
+[2022-04-21 20:33:58.263138] : Resieved message from uid = "700171334" and text = "Старт"
+[2022-04-21 20:33:59.637887] : User with uid = "700171334" got functions list
+[2022-04-21 22:04:50.203484] : Program started
+[2022-04-21 22:04:51.689982] : Database initialized
+[2022-04-21 22:04:51.690980] : Database session created
+[2022-04-21 22:04:51.690980] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-21 22:05:21.069401] : User with uid = "700171334" got balance
+[2022-04-21 22:05:23.335571] : User with uid = "700171334" clicked
+[2022-04-21 22:05:24.004626] : User with uid = "700171334" recieved 7 coins
+[2022-04-21 22:05:24.675435] : User with uid = "700171334" got balance
+[2022-04-21 22:05:27.491998] : User with uid = "700171334" got modificators list
+[2022-04-21 22:05:37.516370] : Resieved message from uid = "700171334" and text = "Да"
+[2022-04-21 22:05:52.533338] : Database changes commited
+[2022-04-21 22:05:56.913268] : Resieved message from uid = "700171334" and text = "Рестарт"
+[2022-04-21 22:06:02.337710] : Database changes commited
+[2022-04-21 22:06:02.339707] : User with uid = "700171334" got functions list
+[2022-04-21 22:06:15.880878] : User with uid = "700171334" decided to transfer the coins
+[2022-04-21 22:06:22.466746] : Resieved message from uid = "700171334" and text = "False"
+[2022-04-21 22:06:27.756649] : Resieved message from uid = "700171334" and text = "10"
+[2022-04-21 22:06:27.924661] : User with uid = "700171334" gave to the user with nickname = "10" 10 coins
+[2022-04-21 22:07:17.966374] : Database changes commited
+[2022-04-21 22:10:21.120107] : Database changes commited
+[2022-04-21 22:10:21.120107] : User with uid = "700171334" clicked
+[2022-04-21 22:10:22.000158] : User with uid = "700171334" recieved 8 coins
+[2022-04-21 22:10:53.185046] : User with uid = "700171334" got modificators list
+[2022-04-21 22:11:02.911734] : Database changes commited
+[2022-04-21 22:11:09.079183] : User with uid = "700171334" got balance
+[2022-04-21 22:11:12.437247] : User with uid = "700171334" got functions list
+[2022-04-21 22:11:16.730338] : User with uid = "700171334" got functions list
+[2022-04-21 22:11:51.071334] : Resieved message from uid = "700171334" and text = "Рестарт"
