@@ -448,3 +448,15 @@
 [2022-04-21 22:11:12.437247] : User with uid = "700171334" got functions list
 [2022-04-21 22:11:16.730338] : User with uid = "700171334" got functions list
 [2022-04-21 22:11:51.071334] : Resieved message from uid = "700171334" and text = "Рестарт"
+[2022-04-24 11:26:07.276488] : Program started
+[2022-04-24 11:26:07.608233] : Database initialized
+[2022-04-24 11:26:07.609234] : Database session created
+[2022-04-24 11:26:07.609234] : VK group session created with TOKEN = "cccf1a05dec0e26b5388dbaf2190362a2a4c2692f7aeebe98b36b2c19031ad1980136723e8bbea17879ed"
+[2022-04-24 11:26:18.012087] : Resieved message from uid = "421955613" and text = "Рестарт"
+[2022-04-24 11:26:19.297180] : User with uid = "421955613" clicked
+[2022-04-24 11:26:19.979233] : User with uid = "421955613" recieved 2 coins
+[2022-04-24 11:26:20.552279] : User with uid = "421955613" got balance
+[2022-04-24 11:26:21.493350] : User with uid = "421955613" got functions list
+[2022-04-24 11:26:27.834840] : User with uid = "421955613" clicked
+[2022-04-24 11:26:28.247868] : User with uid = "421955613" recieved 3 coins
+[2022-04-24 11:26:32.603205] : User with uid = "421955613" got functions list
