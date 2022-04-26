@@ -94,7 +94,6 @@ class ClickerBot:
                                        self.helping_keyboard)
                 if text != 'помощь' and text != 'старт' and text != 'рестарт' and text not in self.texts and text not \
                         in ['да', 'нет'] and text_mes not in self.nicknames_list:
-                    print(self.texts)
                     self.reply_to_user('Пиши или нажимай "Помощь"\nЕсли бот завис - напиши или нажми "Старт"', obj,
                                        self.helping_keyboard)
                 if text == 'старт' or text == 'рестарт':
